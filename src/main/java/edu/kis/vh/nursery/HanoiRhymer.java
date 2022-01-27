@@ -3,18 +3,26 @@ package edu.kis.vh.nursery;
 public class HanoiRhymer extends DefaultCountingOutRhymer {
 
 
-	public static final int TOTAL_REJECTED = 0;
-	int totalRejected = TOTAL_REJECTED;
+	private static final int TOTAL_REJECTED = 0;
+	private int totalRejected = getTotalRejected();
+
+	public static int getTotalRejected() {
+		return TOTAL_REJECTED;
+	}
 
 	public int reportRejected() {
-		return totalRejected;
+		return getTotalRejected();
 	}
 	@Override
 	public void countIn(int in) {
 		if (!callCheck() && in > peekaboo())
-			totalRejected++;
+			setTotalRejected(getTotalRejected() + 1);
 		else
 			super.countIn(in);
+	}
+
+	public void setTotalRejected(int totalRejected) {
+		this.totalRejected = totalRejected;
 	}
 }
 //Zle sformatowane linie: 5, 12, 14, 15
